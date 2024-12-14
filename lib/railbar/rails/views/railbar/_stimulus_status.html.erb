@@ -1,0 +1,29 @@
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let retryCount = 0;
+    const maxRetries = 20;
+    const checkStimulus = setInterval(function () {
+      if (typeof Stimulus !== "undefined") {
+        console.log("Stimulus is loaded and available!");
+        clearInterval(checkStimulus);
+        const application = Stimulus.start();
+        console.log("Stimulus application started.");
+
+        application.register("railbar_stimulus_status", class extends Stimulus.Controller {
+          connect() {
+            const items = this.element.querySelectorAll("railbar item");
+            items.forEach((item) => {
+              if (item.textContent.trim() === "Stimulus") {
+                item.className = "ok";
+              }
+            });
+          }
+        });
+      } else if (retryCount >= maxRetries) {
+        console.error("Stimulus could not be loaded after multiple attempts.");
+        clearInterval(checkStimulus); // Stop checking
+      }
+      retryCount++;
+    }, 100); // Check every 100ms
+  });
+</script>

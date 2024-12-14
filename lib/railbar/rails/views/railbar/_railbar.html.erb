@@ -1,9 +1,14 @@
 <railbar>
-  <%= rails_env %>
-  <style>
-    railbar {
-      background-color: lightblue;
-      padding: 10px;
-    }
-  </style>
+  <brand>🛤️ <a href="https://github.com/mtnstar/railbar" target="_blank">Railbar</a></brand>
+  <item class="primary"><%= rails_host %></item>
+  <item class="primary"><span class="railbar-rails-env"><%= rails_env %></item>
+  <item>Rails <%= rails_version %></item>
+  <item>Ruby <%= RUBY_VERSION %></item>
+  <item class="nok">JS</item>
+  <item class="nok">Turbo Frames</item>
+  <item class="nok">Turbo Streams</item>
+  <%#<item class="nok">Stimulus</item>%>
+  <%= render "railbar/styling" %>
+  <%= render "railbar/js_status" %>
+  <%= render "railbar/stimulus_status" %>
 </railbar>
