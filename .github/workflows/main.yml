@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      #- name: Install packages
-        #run: sudo apt-get update && sudo apt-get install --no-install-recommends -y firefox
-
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -29,6 +26,7 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
+          CI: true
         run: bundle exec rake spec
         working-directory: ./demo
 
