@@ -1,27 +1,41 @@
-name: Ruby
+name: CI
 
 on:
-  push:
-    branches:
-      - main
-
   pull_request:
+  push:
+    branches: [ main ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-    name: Ruby ${{ matrix.ruby }}
-    strategy:
-      matrix:
-        ruby:
-          - '3.2.5'
 
     steps:
-      - uses: actions/checkout@v4
+      #- name: Install packages
+        #run: sudo apt-get update && sudo apt-get install --no-install-recommends -y firefox
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: firefox debug
+        run: which firefox && firefox --version
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby }}
+          ruby-version: .ruby-version
           bundler-cache: true
-      - name: Run the default task
-        run: bundle exec rake
+          working-directory: ./demo
+
+      - name: Run tests
+        env:
+          RAILS_ENV: test
+        run: bundle exec rake spec
+        working-directory: ./demo
+
+      - name: Keep screenshots from failed system tests
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: screenshots
+          path: ${{ github.workspace }}/tmp/capybara
+          if-no-files-found: ignore
