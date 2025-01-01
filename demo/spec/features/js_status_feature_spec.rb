@@ -11,6 +11,8 @@ describe "javascript status", type: :feature do
       expect(page).to have_css('railbar item.ok')
       click_link "Demo Show (Turbo Link)"
       expect(page).to have_css('railbar item.ok')
+      click_link "Back to index (Turbo Link)"
+      expect(page).to have_css('railbar item.ok')
     end
   end
 end
