@@ -1,7 +1,7 @@
 module Railbar
   class TurboFrameStatusController < TurboStatusBaseController
     def show
-      render text: "OK"
+      render partial: "railbar/turbo_frame_status_ok"
     end
   end
 end
