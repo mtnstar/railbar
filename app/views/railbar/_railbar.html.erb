@@ -5,12 +5,17 @@
   <item>Rails <%= rails_version %></item>
   <item>Ruby <%= RUBY_VERSION %></item>
   <item class="nok">JS</item>
-  <%= turbo_frame_tag "turbo-frame-tag", src: "/railbar/turbo_frame_status" do %>
+  <%= turbo_frame_tag "railbar-turbo-frame-status", src: "/railbar/turbo_frame_status" do %>
     <item class="nok">Turbo Frames</item>
   <% end %>
-  <item class="nok">Turbo Streams</item>
+  <item id="railbar-turbo-stream-status" class="nok">Turbo Streams</item>
+  <%= form_with url: "/railbar/turbo_stream_status" do |form| %>
+    <%= form.submit "Test turbo stream" %>
+  <% end %>
+
   <%# <item class="nok">Stimulus</item> %>
   <%= render "railbar/styling" %>
   <%= render "railbar/js_status" %>
+  <%= render "railbar/turbo_stream_load_js" %>
   <%#<%= render "railbar/stimulus_status" %>
 </railbar>
