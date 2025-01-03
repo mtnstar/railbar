@@ -1,6 +1,6 @@
 module Railbar
   class TurboStatusBaseController < ActionController::Base
-    #before_action :turbo_only!
+    before_action :turbo_only!
 
     private
     def turbo_only!
