@@ -1,25 +1,14 @@
 <script>
   if (!window.RailbarTurboStreamStatus) {
     const RailbarTurboStreamStatus = (() => {
-      function fetchTurboStreamStatus() {
-        fetch("/railbar/turbo_stream_status", {
-          method: "POST",
-          headers: {
-            Accept: "text/vnd.turbo-stream.html"
-          }
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error(`Railbar: Failed to fetch Turbo Stream: ${response.statusText}`);
-            }
-          })
-          .catch((error) => console.error(error));
+      function submitTurboStreamStatusForm() {
+        document.getElementById("railbar-turbo-stream-post-status-submit").click();
       }
 
       function init() {
-        fetchTurboStreamStatus();
+        submitTurboStreamStatusForm();
         document.addEventListener("turbo:load", () => {
-          fetchTurboStreamStatus();
+          submitTurboStreamStatusForm();
         })
       }
 

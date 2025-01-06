@@ -8,9 +8,10 @@
   <%= turbo_frame_tag "railbar-turbo-frame-status", src: "/railbar/turbo_frame_status" do %>
     <item class="nok">Turbo Frames</item>
   <% end %>
-  <item id="railbar-turbo-stream-status" class="nok">Turbo Streams</item>
-  <%= form_with url: "/railbar/turbo_stream_status" do |form| %>
-    <%= form.submit "Test turbo stream" %>
+  <item class="primary">Turbo Streams:</item>
+  <item id="railbar-turbo-stream-post-status" class="nok">Form (POST)</item>
+  <%= form_with url: "/railbar/turbo_stream_form_status" do |form| %>
+    <%= form.submit "", style: "display: none;", id: "railbar-turbo-stream-post-status-submit" %>
   <% end %>
 
   <%# <item class="nok">Stimulus</item> %>
