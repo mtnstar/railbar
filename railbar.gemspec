@@ -19,5 +19,5 @@ Gem::Specification.new do |spec|
     Dir["{app,config,lib}/**/*", "README.md"]
   end
 
-  spec.add_dependency "rails", ">= 8.0.1"
+  spec.add_dependency "rails", ">= 7.0"
 end
